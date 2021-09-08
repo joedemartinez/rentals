@@ -1,0 +1,161 @@
+<?php include 'includes/session.php'; ?>
+<?php 
+
+?>
+<?php include 'includes/header.php'; ?>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+
+  	<?php include 'includes/navbar.php'; ?>
+  	<?php include 'includes/menubar.php'; ?>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Dashboard
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Dashboard</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <?php
+        if(isset($_SESSION['error'])){
+          echo "
+            <div class='alert alert-danger alert-dismissible'>
+              <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
+              <h4><i class='icon fa fa-warning'></i> Error!</h4>
+              ".$_SESSION['error']."
+            </div>
+          ";
+          unset($_SESSION['error']);
+        }
+        if(isset($_SESSION['success'])){
+          echo "
+            <div class='alert alert-success alert-dismissible'>
+              <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
+              <h4><i class='icon fa fa-check'></i> Success!</h4>
+              ".$_SESSION['success']."
+            </div>
+          ";
+          unset($_SESSION['success']);
+        }
+      ?>
+      <!-- Small boxes (Stat box) -->
+      <div class="row">
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-aqua">
+            <div class="inner">
+              <!-- <?php
+                $sql = "SELECT * FROM emp_table WHERE exit_id = 0 AND status = 0";
+                $query = $conn->query($sql);
+
+                echo "<h3>".$query->num_rows."</h3>";
+              ?> -->
+              <h3>8</h3>
+              <p>Clients</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-person-stalker"></i>
+            </div>
+            <ul class="small-box-footer">
+              <li>Active Clients : 7</li>
+              <li>Deactived Clients: 1</li>
+            </ul>
+          </div>
+        </div>
+        
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-yellow">
+            <div class="inner">
+             <!--  <?php
+                $sql = "SELECT * FROM emp_table";
+                $query = $conn->query($sql);
+
+                echo "<h3>".$query->num_rows."</h3>";
+              ?> -->
+              <h3>8</h3>
+              <p>Vehicles</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-android-car"></i>
+            </div>
+            <ul class="small-box-footer">
+              <li>Rented Out Vehicles : 7</li>
+              <li>Vehicles at shop: 1</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-green">
+            <div class="inner">
+              <!-- <?php
+                $sql = "SELECT * FROM emp_table WHERE exit_id = 0 AND status = 0";
+                $query = $conn->query($sql);
+
+                echo "<h3>".$query->num_rows."</h3>";
+              ?> -->
+              <h3>8</h3>
+              <p>User</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-person-stalker"></i>
+            </div>
+            <ul class="small-box-footer">
+              <li>Active Users : 7</li>
+              <li>Deactived Users: 1</li>
+            </ul>
+          </div>
+        </div>
+        <!-- ./col -->
+
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-blue">
+            <div class="inner">
+              <!-- <?php
+                $sql = "SELECT * FROM emp_table WHERE exit_id = 0 AND status = 0";
+                $query = $conn->query($sql);
+
+                echo "<h3>".$query->num_rows."</h3>";
+              ?> -->
+              <h3>8</h3>
+              <p>Locations</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-map"></i>
+            </div>
+            <ul class="small-box-footer">
+              <li>.</li>
+              <li>.</li>
+            </ul>
+          </div>
+        </div>
+
+
+      </div>
+     
+
+      </section>
+      <!-- right col -->
+    </div>
+  	<?php include 'includes/footer.php'; ?>
+
+</div>
+<!-- ./wrapper -->
+
+<?php include 'includes/scripts.php'; ?>
+
+</body>
+</html>
