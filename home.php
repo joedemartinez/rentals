@@ -52,21 +52,32 @@
           <!-- small box -->
           <div class="small-box bg-aqua">
             <div class="inner">
-              <!-- <?php
-                $sql = "SELECT * FROM emp_table WHERE exit_id = 0 AND status = 0";
+              <?php
+                $sql = "SELECT * FROM clients_table";
                 $query = $conn->query($sql);
 
                 echo "<h3>".$query->num_rows."</h3>";
-              ?> -->
-              <h3>8</h3>
+              ?>
               <p>Clients</p>
             </div>
             <div class="icon">
               <i class="ion ion-person-stalker"></i>
             </div>
             <ul class="small-box-footer">
-              <li>Active Clients : 7</li>
-              <li>Deactived Clients: 1</li>
+              <li>Active Clients : 
+                <?php
+                $sql = "SELECT * FROM clients_table WHERE status = 0";
+                $query = $conn->query($sql);
+
+                echo $query->num_rows;
+              ?>
+              </li>
+              <li>Deactived Clients: <?php
+                $sql = "SELECT * FROM clients_table WHERE status = 1";
+                $query = $conn->query($sql);
+
+                echo $query->num_rows;
+              ?></li>
             </ul>
           </div>
         </div>

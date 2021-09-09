@@ -50,24 +50,23 @@
                 <thead>
                   <th>#</th>
                   <th>Fullname</th>
-                  <th>Photo</th>
+                  <!-- <th>Photo</th> -->
                   <th>Address</th>
                   <th>Contact</th>
                   <th>ID No.</th>
                 </thead>
                 <tbody>
                   <?php
-                    $sql =  "SELECT * FROM clients_table ORDER BY client_id DESC";
+                    $sql =  "SELECT * FROM clients_table WHERE status = 0 ORDER BY client_id DESC";
                     $query = $conn->query($sql);
                    //id auto increament in tables initiation
                     $i = 1;
                     while($row = $query->fetch_assoc()){
-
+                      // <td><img width='50' height='40' src='assets/images/".$row['photo']."'></td>
                       echo "
                         <tr>
                           <td>". $i."</td>
                           <td>".$row['fullname']."</td>
-                          <td><img width='50' height='40' src='assets/images/".$row['photo']."'></td>
                           <td>".$row['address']."</td>
                           <td>".$row['contact']."</td>
                           <td>".$row['identification_type']." : ".$row['identification_number']."</td>

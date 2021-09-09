@@ -50,7 +50,7 @@
                 <thead>
                   <th>#</th>
                   <th>Fullname</th>
-                  <th>Photo</th>
+                  <!-- <th>Photo</th> -->
                   <th>Address</th>
                   <th>Contact</th>
                   <th>ID No.</th>
@@ -58,22 +58,21 @@
                 </thead>
                 <tbody>
                   <?php
-                    $sql =  "SELECT * FROM clients_table ORDER BY client_id DESC";
+                    $sql =  "SELECT * FROM clients_table WHERE status = 1 ORDER BY client_id DESC";
                     $query = $conn->query($sql);
                    //id auto increament in tables initiation
                     $i = 1;
                     while($row = $query->fetch_assoc()){
-
+                      // <td><img width='50' height='40' src='assets/images/".$row['photo']."'></td>
                       echo "
                         <tr>
                           <td>". $i."</td>
                           <td>".$row['fullname']."</td>
-                          <td><img width='50' height='40' src='assets/images/".$row['photo']."'></td>
                           <td>".$row['address']."</td>
                           <td>".$row['contact']."</td>
                           <td>".$row['identification_type']." : ".$row['identification_number']."</td>
                           <td><button class='btn btn-warning btn-sm btn-flat activate' data-id='".$row['client_id']."'><i class='fa fa-toggle-on'></i> Activate</button>
-                            <button title='Delete Unit' class='btn btn-danger btn-sm btn-flat delete' data-id='".$row['client_id']."'><i class='fa fa-trash'></i> Delete</button>
+                            <button title='Delete' class='btn btn-danger btn-sm btn-flat delete' data-id='".$row['client_id']."'><i class='fa fa-trash'></i> Delete</button>
                           </td>
                         </tr>
                       ";
@@ -92,6 +91,37 @@
   <?php include 'includes/footer.php'; ?>
 </div>
 <?php include 'includes/scripts.php'; ?>
+
+<script>
+  $(document).on("click", ".activate", function(e){
+    e.preventDefault();
+    confirm('Do you want to activate this client?');
+    let id = $(this).data('id');
+    let name = "activate";
+    getRow(id, name);
+  });
+
+  $(document).on("click", ".delete", function(e){
+    e.preventDefault();
+    confirm('Do you want to delete this client?');
+    let id = $(this).data('id');
+    let name = "delete";
+    getRow(id, name);
+  });
+
+function getRow(id, name){
+  $.ajax({
+    type: 'POST',
+    url: 'process/Clients.php',
+    data: {id:id, name:name},
+    dataType: 'json',
+    success: function(response){
+      
+        location.reload();
+    }
+  });
+}
+</script>
 
 </body>
 </html>

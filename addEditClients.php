@@ -46,14 +46,14 @@
         <div class="col-xs-12">
           <div class="box">
           <div class="box-header with-border">
-               <a href="#addnew" data-toggle="modal" class="btn btn-primary btn-sm btn-flat"><i class="fa fa-plus"></i>Add New</a>
+               <a href="#addnew" data-toggle="modal" class="btn btn-primary btn-sm btn-flat"><i class="fa fa-plus"></i> Add New</a>
             </div>
             <div class="box-body table-responsive">
               <table id="example2" class="table table-bordered" width="100%" cellspacing="0">
                 <thead>
                   <th>#</th>
                   <th>Fullname</th>
-                  <th>Photo</th>
+                  <!-- <th>Photo</th> -->
                   <th>Address</th>
                   <th>Contact</th>
                   <th>ID No.</th>
@@ -61,22 +61,22 @@
                 </thead>
                 <tbody>
                   <?php
-                    $sql =  "SELECT * FROM clients_table ORDER BY client_id DESC";
+                    $sql =  "SELECT * FROM clients_table WHERE status = 0 ORDER BY client_id DESC";
                     $query = $conn->query($sql);
                    //id auto increament in tables initiation
                     $i = 1;
                     while($row = $query->fetch_assoc()){
-
+                      // <td><img width='50' height='40' src='assets/images/".$row['photo']."'></td>
                       echo "
                         <tr>
                           <td>". $i."</td>
                           <td>".$row['fullname']."</td>
-                          <td><img width='50' height='40' src='assets/images/".$row['photo']."'></td>
                           <td>".$row['address']."</td>
                           <td>".$row['contact']."</td>
                           <td>".$row['identification_type']." : ".$row['identification_number']."</td>
-                          <td><button class='btn btn-warning btn-sm btn-flat activate' data-id='".$row['client_id']."'><i class='fa fa-edit'></i> Edit</button>
-                            <button title='Delete Unit' class='btn btn-danger btn-sm btn-flat delete' data-id='".$row['client_id']."'><i class='fa fa-trash'></i> Delete</button>
+                          <td><button class='btn btn-warning btn-sm btn-flat edit' data-id='".$row['client_id']."'><i class='fa fa-edit'></i> Edit</button>
+                          <button class='btn btn-secondary btn-sm btn-flat deactivate' data-id='".$row['client_id']."'><i class='fa fa-toggle-off'></i> Deactivate</button>
+                            <button title='Delete' class='btn btn-danger btn-sm btn-flat delete' data-id='".$row['client_id']."' <i class='fa fa-trash'></i> Delete</button>
                           </td>
                         </tr>
                       ";
@@ -93,8 +93,62 @@
   </div>
     
   <?php include 'includes/footer.php'; ?>
+
 </div>
 <?php include 'includes/scripts.php'; ?>
+<?php include 'modals/clientsModal.php'; ?>
+
+<script>
+  $(document).on("click", ".edit", function(e){
+    e.preventDefault();
+    $('#edit').modal('show');
+    let id = $(this).data('id');
+    let name = "edit";
+    getRow(id, name);
+  });
+
+  $(document).on("click", ".deactivate", function(e){
+    e.preventDefault();
+    confirm('Do you want to deactivate this client?');
+    let id = $(this).data('id');
+    let name = "deactivate";
+    getRow(id, name);
+  });
+
+  $(document).on("click", ".delete", function(e){
+    e.preventDefault();
+    confirm('Do you want to delete this client?');
+    let id = $(this).data('id');
+    let name = "delete";
+    getRow(id, name);
+  });
+
+function getRow(id, name){
+  $.ajax({
+    type: 'POST',
+    url: 'process/Clients.php',
+    data: {id:id, name:name},
+    dataType: 'json',
+    success: function(response){
+      if("delete" in response){
+        location.reload();
+      }
+      else if("deactivate" in response){
+        location.reload();
+      }
+      else{
+        $('#client').val(response.client_id)
+        $('#fullname').val(response.fullname);
+        $('#address').val(response.address);
+        $('#contact').val(response.contact);
+        $('#email').val(response.email);
+        $('#id_type').val(response.identification_type);
+        $('#id_number').val(response.identification_number);
+      }
+    }
+  });
+}
+</script>
 
 </body>
 </html>
