@@ -87,21 +87,30 @@
           <!-- small box -->
           <div class="small-box bg-yellow">
             <div class="inner">
-             <!--  <?php
-                $sql = "SELECT * FROM emp_table";
+              <?php
+                $sql = "SELECT * FROM vehicles";
                 $query = $conn->query($sql);
 
                 echo "<h3>".$query->num_rows."</h3>";
-              ?> -->
-              <h3>8</h3>
+              ?>
               <p>Vehicles</p>
             </div>
             <div class="icon">
               <i class="ion ion-android-car"></i>
             </div>
             <ul class="small-box-footer">
-              <li>Rented Out Vehicles : 7</li>
-              <li>Vehicles at shop: 1</li>
+              <li>Rented Out Vehicles : <?php
+                $sql = "SELECT * FROM vehicles WHERE status = 1";
+                $query = $conn->query($sql);
+
+                echo $query->num_rows;
+              ?></li>
+              <li>Vehicles at shop: <?php
+                $sql = "SELECT * FROM vehicles WHERE status = 0";
+                $query = $conn->query($sql);
+
+                echo $query->num_rows;
+              ?></li>
             </ul>
           </div>
         </div>

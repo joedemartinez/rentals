@@ -81,8 +81,8 @@
                           <td>".$row['vehicle_price']."</td>
                           <td>".$row['vehicle_location']."</td>
                           <td>".$row['vehicle_insurance_date']."</td>
-                          <td><button class='btn btn-warning btn-sm btn-flat activate' data-id='".$row['client_id']."'><i class='fa fa-edit'></i> Edit</button>
-                            <button title='Delete Unit' class='btn btn-danger btn-sm btn-flat delete' data-id='".$row['client_id']."'><i class='fa fa-trash'></i> Delete</button>
+                          <td><button class='btn btn-warning btn-sm btn-flat edit' data-id='".$row['vehicle_id']."'><i class='fa fa-edit'></i> Edit</button>
+                            <button title='Delete Unit' class='btn btn-danger btn-sm btn-flat delete' data-id='".$row['vehicle_id']."'><i class='fa fa-trash'></i> Delete</button>
                           </td>
                         </tr>
                       ";
@@ -101,6 +101,49 @@
   <?php include 'includes/footer.php'; ?>
 </div>
 <?php include 'includes/scripts.php'; ?>
+<?php include 'modals/vehicleModal.php'; ?>
+
+<script>
+  $(document).on("click", ".edit", function(e){
+    e.preventDefault();
+    $('#edit').modal('show');
+    let id = $(this).data('id');
+    let name = "edit";
+    getRow(id, name);
+  });
+
+  $(document).on("click", ".delete", function(e){
+    e.preventDefault();
+    confirm('Do you want to delete this vehicle?');
+    let id = $(this).data('id');
+    let name = "delete";
+    getRow(id, name);
+  });
+
+function getRow(id, name){
+  $.ajax({
+    type: 'POST',
+    url: 'process/Vehicles.php',
+    data: {id:id, name:name},
+    dataType: 'json',
+    success: function(response){
+      if("delete" in response){
+        location.reload();
+      }
+      else{
+        $('#vehicle').val(response.vehicle_id)
+        $('#vehicle_type').val(response.vehicle_type);
+        $('#vehicle_brand').val(response.vehicle_brand);
+        $('#vehicle_reg_no').val(response.vehicle_reg_no);
+        $('#vehicle_price').val(response.vehicle_price);
+        $('#vehicle_color').val(response.vehicle_color);
+        $('#vehicle_location').val(response.vehicle_location);
+        $('#vehicle_insurance_date').val(response.vehicle_insurance_date);
+      }
+    }
+  });
+}
+</script>
 
 </body>
 </html>
