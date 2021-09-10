@@ -53,11 +53,12 @@
                   <th>Photo</th>
                   <th>Fullname</th>
                   <th>DoB</th>
+                  <th>Address</th>
                   <th>Contact</th>
                 </thead>
                 <tbody>
                   <?php
-                    $sql =  "SELECT * FROM users_table ORDER BY user_id DESC";
+                    $sql =  "SELECT * FROM users_table WHERE status = 0 ORDER BY user_id DESC";
                     $query = $conn->query($sql);
                    //id auto increament in tables initiation
                     $i = 1;
@@ -70,6 +71,7 @@
                           <td><img width='50' height='40' src='assets/images/".$row['photo']."'></td>
                           <td>".$row['fullname']."</td>
                           <td>".$row['dob']."</td>
+                          <td>".$row['address']."</td>
                           <td>".$row['phoneno']."</td>
                         </tr>
                       ";

@@ -111,21 +111,32 @@
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
-              <!-- <?php
-                $sql = "SELECT * FROM emp_table WHERE exit_id = 0 AND status = 0";
+              <?php
+                $sql = "SELECT * FROM users_table";
                 $query = $conn->query($sql);
 
                 echo "<h3>".$query->num_rows."</h3>";
-              ?> -->
-              <h3>8</h3>
+              ?>
               <p>User</p>
             </div>
             <div class="icon">
               <i class="ion ion-person-stalker"></i>
             </div>
             <ul class="small-box-footer">
-              <li>Active Users : 7</li>
-              <li>Deactived Users: 1</li>
+              <li>Active Users : 
+                <?php
+                $sql = "SELECT * FROM users_table WHERE status = 0";
+                $query = $conn->query($sql);
+
+                echo $query->num_rows;
+              ?></li>
+              <li>Deactived Users: 
+              <?php
+                $sql = "SELECT * FROM users_table WHERE status = 1";
+                $query = $conn->query($sql);
+
+                echo $query->num_rows;
+              ?></li>
             </ul>
           </div>
         </div>

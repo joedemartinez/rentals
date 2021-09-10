@@ -56,13 +56,14 @@
                   <th>Photo</th>
                   <th>Fullname</th>
                   <th>DoB</th>
+                  <th>Address</th>
                   <th>Contact</th>
                   <th>Created On</th>
                   <th>Action</th>
                 </thead>
                 <tbody>
                   <?php
-                    $sql =  "SELECT * FROM users_table ORDER BY user_id DESC";
+                    $sql =  "SELECT * FROM users_table WHERE status = 0 ORDER BY user_id DESC";
                     $query = $conn->query($sql);
                    //id auto increament in tables initiation
                     $i = 1;
@@ -75,10 +76,12 @@
                           <td><img width='40' height='40' src='assets/images/".$row['photo']."'></td>
                           <td>".$row['fullname']."</td>
                           <td>".$row['dob']."</td>
+                          <td>".$row['address']."</td>
                           <td>".$row['phoneno']."</td>
                           <td>".$row['createdat']."</td>
-                          <td><button class='btn btn-warning btn-sm btn-flat activate' data-id='".$row['user_id']."'><i class='fa fa-edit'></i> Edit</button>
-                            <button title='Delete Unit' class='btn btn-danger btn-sm btn-flat delete' data-id='".$row['user_id']."'><i class='fa fa-trash'></i> Delete</button>
+                          <td><button class='btn btn-warning btn-sm btn-flat edit' data-id='".$row['user_id']."'><i class='fa fa-edit'></i> Edit</button>
+                            <button class='btn btn-secondary btn-sm btn-flat deactivate' data-id='".$row['user_id']."'><i class='fa fa-toggle-off'></i> Deactivate</button>
+                            <button title='Delete' class='btn btn-danger btn-sm btn-flat delete' data-id='".$row['user_id']."'><i class='fa fa-trash'></i> Delete</button>
                           </td>
                         </tr>
                       ";
@@ -97,6 +100,59 @@
   <?php include 'includes/footer.php'; ?>
 </div>
 <?php include 'includes/scripts.php'; ?>
+
+<?php include 'modals/usersModal.php'; ?>
+
+<script>
+  $(document).on("click", ".edit", function(e){
+    e.preventDefault();
+    $('#edit').modal('show');
+    let id = $(this).data('id');
+    let name = "edit";
+    getRow(id, name);
+  });
+
+  $(document).on("click", ".deactivate", function(e){
+    e.preventDefault();
+    confirm('Do you want to deactivate this user?');
+    let id = $(this).data('id');
+    let name = "deactivate";
+    getRow(id, name);
+  });
+
+  $(document).on("click", ".delete", function(e){
+    e.preventDefault();
+    confirm('Do you want to delete this user?');
+    let id = $(this).data('id');
+    let name = "delete";
+    getRow(id, name);
+  });
+
+function getRow(id, name){
+  $.ajax({
+    type: 'POST',
+    url: 'process/Users.php',
+    data: {id:id, name:name},
+    dataType: 'json',
+    success: function(response){
+      if("delete" in response){
+        location.reload();
+      }
+      else if("deactivate" in response){
+        location.reload();
+      }
+      else{
+        $('#user').val(response.user_id)
+        $('#fullname').val(response.fullname);
+        $('#address').val(response.address);
+        $('#contact').val(response.phoneno);
+        $('#dob').val(response.dob);
+        $('#username').val(response.username);
+      }
+    }
+  });
+}
+</script>
 
 </body>
 </html>

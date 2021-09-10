@@ -84,8 +84,8 @@
             <li><a href="#"><i class="fa fa-circle-o"></i> Add/Edit </a></li>
           </ul>
         </li>
-        <li class="header">REPORTS</li>
-        <li><a href="#"><i class="fa fa-files-o"></i> <span>Reports</span></a></li>
+        <!-- <li class="header">REPORTS</li>
+        <li><a href="#"><i class="fa fa-files-o"></i> <span>Reports</span></a></li> -->
         <li class="header">SIGN OUT</li>
         <li><a href="logout.php"><i class="fa fa-power-off"></i> <span>Sign out</span></a></li>
       </ul>

@@ -18,6 +18,11 @@
 		if($_POST['name'] === 'delete'){
 			$sql = "DELETE FROM clients_table WHERE client_id = '$id'";
 			if($conn->query($sql)){
+				//update details
+				$deletedby = $user['fullname'];
+        		$deletedat = date('Y-m-d');
+        		$conn->query("UPDATE clients_table SET deletedat = '$deletedat', deletedby = '$deletedby' WHERE client_id = '$id'");
+
 				$_SESSION['success'] = 'Deleted successfully';
 			}
 			else{

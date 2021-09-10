@@ -58,7 +58,7 @@
                 </thead>
                 <tbody>
                   <?php
-                    $sql =  "SELECT * FROM users_table ORDER BY user_id DESC";
+                    $sql =  "SELECT * FROM users_table WHERE status = 1 ORDER BY user_id DESC";
                     $query = $conn->query($sql);
                    //id auto increament in tables initiation
                     $i = 1;
@@ -73,7 +73,7 @@
                           <td>".$row['dob']."</td>
                           <td>".$row['phoneno']."</td>
                           <td><button class='btn btn-warning btn-sm btn-flat activate' data-id='".$row['user_id']."'><i class='fa fa-toggle-on'></i> Activate</button> 
-                            <button title='Delete Unit' class='btn btn-danger btn-sm btn-flat delete' data-id='".$row['user_id']."'><i class='fa fa-trash'></i> Delete</button>
+                            <button title='Delete' class='btn btn-danger btn-sm btn-flat delete' data-id='".$row['user_id']."'><i class='fa fa-trash'></i> Delete</button>
                           </td>
                         </tr>
                       ";
@@ -92,6 +92,37 @@
   <?php include 'includes/footer.php'; ?>
 </div>
 <?php include 'includes/scripts.php'; ?>
+
+<script>
+  $(document).on("click", ".activate", function(e){
+    e.preventDefault();
+    confirm('Do you want to activate this user?');
+    let id = $(this).data('id');
+    let name = "activate";
+    getRow(id, name);
+  });
+
+  $(document).on("click", ".delete", function(e){
+    e.preventDefault();
+    confirm('Do you want to delete this user?');
+    let id = $(this).data('id');
+    let name = "delete";
+    getRow(id, name);
+  });
+
+function getRow(id, name){
+  $.ajax({
+    type: 'POST',
+    url: 'process/Users.php',
+    data: {id:id, name:name},
+    dataType: 'json',
+    success: function(response){
+      
+        location.reload();
+    }
+  });
+}
+</script>
 
 </body>
 </html>
