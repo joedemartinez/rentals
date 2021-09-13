@@ -27,11 +27,12 @@
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="assets/dist/css/skins/_all-skins.min.css">
   	
+    <link rel="stylesheet" href="assets/bower_components/select2/dist/css/select2.css">
     <!-- icon -->
     <link rel="shortcut icon" href="assets/images/icon.png">
 
   	<!-- Google Font -->
-  	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+  	<!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic"> -->
 
   	<style type="text/css">
   		.mt20{
@@ -67,4 +68,5 @@
         padding: 0;
       }
   	</style>
+
 </head>

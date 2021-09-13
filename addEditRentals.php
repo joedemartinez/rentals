@@ -56,10 +56,9 @@
                   <th>Vehicle</th>
                   <th>Start Date</th>
                   <th>End Date</th>
-                  <th>Payment Date</th>
                   <th>Rate</th>
                   <th>Bank</th>
-                  <th>Created On</th>
+                  <th>Payments</th>
                   <th>Action</th>
                 </thead>
                 <tbody>
@@ -82,12 +81,14 @@
                           <td>".$row2[1]." - ".$row2[2]."</td>
                           <td>".$row['start_date']."</td>
                           <td>".$row['end_date']." </td>
-                          <td>".$row['payment_date']."</td>
                           <td>".$row['rate']."</td>
                           <td>".$row['bank']." - ".$row['bank_account']." </td>
-                          <td>".$row['createdat']."</td>
-                          <td><button class='btn btn-warning btn-sm btn-flat activate' data-id='".$row['client_id']."'><i class='fa fa-edit'></i> Edit</button>
-                            <button title='Delete Unit' class='btn btn-danger btn-sm btn-flat delete' data-id='".$row['client_id']."'><i class='fa fa-trash'></i> Delete</button>
+                          <td>
+                            <button title='Show Payment' class='btn btn-info btn-sm btn-flat spayment' data-id='".$row['rental_id']."'><i class='fa fa-eye'></i> Show Payment</button>
+                            <button title='Add Payment' class='btn btn-secondary btn-sm btn-flat apayment' data-id='".$row['rental_id']."'><i class='fa fa-plus'></i> Add Payment</button>
+                          </td>
+                          <td>
+                            <button title='Delete' class='btn btn-danger btn-sm btn-flat delete' data-id='".$row['rental_id']."'><i class='fa fa-trash'></i> Delete</button>
                           </td>
                         </tr>
                       ";
@@ -102,10 +103,74 @@
       </div>
     </section>   
   </div>
-    
+  <!-- <button class='btn btn-warning btn-sm btn-flat edit' data-id='".$row['rental_id']."'><i class='fa fa-edit'></i> Edit</button> -->
+
   <?php include 'includes/footer.php'; ?>
 </div>
 <?php include 'includes/scripts.php'; ?>
+
+<?php include 'modals/rentalsModal.php'; ?>
+
+<script>
+  $(document).on("click", ".apayment", function(e){
+    e.preventDefault();
+    $('#apayment').modal('show');
+    let id = $(this).data('id');
+    let name = "apayment";
+    getRow(id, name);
+  });
+
+  $(document).on("click", ".spayment", function(e){
+    e.preventDefault();
+    $('#payment').modal('show');
+    let id = $(this).data('id');
+    let name = "payment";
+    getPay(id, name);
+  });
+
+  $(document).on("click", ".delete", function(e){
+    e.preventDefault();
+    confirm('Do you want to delete this rental?');
+    let id = $(this).data('id');
+    let name = "delete";
+    getRow(id, name);
+  });
+
+function getRow(id, name){
+  $.ajax({
+    type: 'POST',
+    url: 'process/Rentals.php',
+    data: {id:id, name:name},
+    dataType: 'json',
+    success: function(response){
+      if("delete" in response){
+        location.reload();
+      }
+      else if("hello" in response){
+        location.reload();
+      }
+      else{
+        $('.clientName').html(response.clientName);
+        $('#vehicle_price').val(response.vehicle_price);
+        $('#rentalID').val(response.rental_id);
+      }
+    }
+  });
+}
+
+//get all payments
+function getPay(id, name){
+  $.ajax({
+    type: 'POST',
+    url: 'process/Rentals.php', 
+    data: {id:id, name:name},
+    success: function(response){
+      console.log(response);
+        $('.payments').html(response);
+    }
+  });
+}
+</script>
 
 </body>
 </html>

@@ -36,6 +36,7 @@
 <script src="assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
 <!-- Slimscroll -->
 <script src="assets/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<script src="assets/bower_components/select2/dist/js/select2.min.js"></script>
 
 
 <script src="assets/bower_components/datatables.net-bs/js/buttons.flash.min.js"></script>
@@ -48,6 +49,22 @@
 
 <!-- AdminLTE App -->
 <script src="assets/dist/js/adminlte.min.js"></script>
+
+ <script type="text/javascript">      
+    //select2 working in modal
+      // Do this before you initialize any of your modals
+    $.fn.modal.Constructor.prototype.enforceFocus = function() {};
+    </script>
+
+<!-- select2 function -->
+<script type="text/javascript">
+  $(document).ready(function() {
+  $('select').select2({
+    dropdownAutoWidth : true,
+    width: '100%'
+  });
+});
+</script>
 
 <!-- aauto logout -->
 <script>  
@@ -131,12 +148,12 @@ $(function(){
   /** add active class and stay opened when selected */
   var url = window.location;
 
-  for sidebar menu entirely but not cover treeview
+  // for sidebar menu entirely but not cover treeview
   $('ul.sidebar-menu a').filter(function() {
      return this.href == url;
   }).parent().addClass('active');
 
-  for treeview
+  // for treeview
   $('ul.treeview-menu a').filter(function() {
      return this.href == url;
   }).parentsUntil(".sidebar-menu > .treeview-menu").addClass('active');
@@ -161,34 +178,6 @@ $(function(){
     $(".alert:visible").fadeOut(20000);
   });
 </script>
-
-<!-- printing -->
-<!-- <script>
-  $(document).on("click", "#printThis", function(e){
-  $("#unitStaff_id").printThis({
-      debug: false,                   // show the iframe for debugging
-      importCSS: false,                // import parent page css
-      importStyle: false,             // import style tags
-      printContainer: true,           // grab outer container as well as the contents of the selector
-      loadCSS: "melr/assets/bower_components/bootstrap/dist/css/bootstrap.min.css",      // path to additional css file - use an array [] for multiple
-      pageTitle: "",               // add title to print page
-      removeInline: false,            // remove all inline styles from print elements
-      removeInlineSelector: "body *", // custom selectors to filter inline styles. removeInline must be true
-      printDelay: 333,                // variable print delay
-      header: "",                   // prefix to html
-      footer: null,                   // postfix to html
-      base: false,                    // preserve the BASE tag, or accept a string for the URL
-      formValues: true,               // preserve input/form values
-      canvas: false,                  // copy canvas elements
-      doctypeString: '...',           // enter a different doctype for older markup
-      removeScripts: false,           // remove script tags from print content
-      copyTagClasses: false,           // copy classes from the html & body tag
-      beforePrintEvent: null,         // callback function for printEvent in iframe
-      beforePrint: null,              // function called before iframe is filled
-    afterPrint: null                // function called before iframe is removed
- });
-});
-</script> -->
 
 <!-- show/hide password -->
 <script type="text/javascript">
@@ -272,36 +261,3 @@ $(function(){
 
 
   </script>
-
-<script>
-  //preview photo before upload
-    // function prePhoto(input){
-    //  var reader = new FileReader();
-    //  reader.onload = function()
-    //  {
-    //   var output = document.getElementById('previewPhoto');
-    //   output.src = reader.result;
-    //  }
-    //  reader.readAsDataURL(event.target.files[0]);
-    // }
-
-    // function prePhoto1(input){
-    //  var reader = new FileReader();
-    //  reader.onload = function()
-    //  {
-    //   var output = document.getElementById('previewPhoto1');
-    //   output.src = reader.result;
-    //  }
-    //  reader.readAsDataURL(event.target.files[0]);
-    // }
-
-    // function prePhoto2(input){
-    //  var reader = new FileReader();
-    //  reader.onload = function()
-    //  {
-    //   var output = document.getElementById('previewPhoto2');
-    //   output.src = reader.result;
-    //  }
-    //  reader.readAsDataURL(event.target.files[0]);
-    // }
-</script>

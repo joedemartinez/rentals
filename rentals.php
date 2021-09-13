@@ -53,9 +53,9 @@
                   <th>Vehicle</th>
                   <th>Start Date</th>
                   <th>End Date</th>
-                  <th>Payment Date</th>
                   <th>Rate</th>
                   <th>Bank</th>
+                  <th>Payments</th>
                 </thead>
                 <tbody>
                   <?php
@@ -77,9 +77,9 @@
                           <td>".$row2[1]." - ".$row2[2]."</td>
                           <td>".$row['start_date']."</td>
                           <td>".$row['end_date']." </td>
-                          <td>".$row['payment_date']."</td>
                           <td>".$row['rate']."</td>
                           <td>".$row['bank']." - ".$row['bank_account']." </td>
+                          <td><button title='Show Payment' class='btn btn-info btn-sm btn-flat spayment' data-id='".$row['rental_id']."'><i class='fa fa-eye'></i> Show Payment</button></td>
                         </tr>
                       ";
                       $i++;
@@ -97,6 +97,26 @@
   <?php include 'includes/footer.php'; ?>
 </div>
 <?php include 'includes/scripts.php'; ?>
-
+<?php include 'modals/rentalsModal.php'; ?>
+<script>
+  $(document).on("click", ".spayment", function(e){
+    e.preventDefault();
+    $('#payment').modal('show');
+    let id = $(this).data('id');
+    let name = "payment";
+    getPay(id, name);
+  });
+//get all payments
+function getPay(id, name){
+  $.ajax({
+    type: 'POST',
+    url: 'process/Rentals.php', 
+    data: {id:id, name:name},
+    success: function(response){
+        $('.payments').html(response);
+    }
+  });
+}
+</script>
 </body>
 </html>

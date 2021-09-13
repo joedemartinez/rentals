@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Sep 10, 2021 at 03:26 AM
+-- Generation Time: Sep 13, 2021 at 04:49 AM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.8
 
@@ -61,15 +61,25 @@ INSERT INTO `clients_table` (`client_id`, `fullname`, `address`, `contact`, `ema
 
 CREATE TABLE `payment_table` (
   `payment_id` int(11) NOT NULL,
-  `client_id` int(11) NOT NULL,
-  `vehicle_id` int(11) NOT NULL,
+  `rental_id` int(11) NOT NULL,
+  `client_id` int(11) DEFAULT NULL,
+  `vehicle_id` int(11) DEFAULT NULL,
   `payment_date` date NOT NULL,
   `payment_amount` decimal(10,2) NOT NULL,
-  `commulative_amount` decimal(10,2) NOT NULL,
+  `commulative_amount` decimal(10,2) DEFAULT 0.00,
   `remaining_bal` decimal(10,2) NOT NULL,
   `opening_bal` decimal(10,2) NOT NULL,
-  `createdat` date NOT NULL
+  `createdat` date NOT NULL,
+  `createdby` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `payment_table`
+--
+
+INSERT INTO `payment_table` (`payment_id`, `rental_id`, `client_id`, `vehicle_id`, `payment_date`, `payment_amount`, `commulative_amount`, `remaining_bal`, `opening_bal`, `createdat`, `createdby`) VALUES
+(5, 3, NULL, NULL, '2021-09-13', '640.00', '640.00', '15360.00', '16000.00', '2021-09-13', 'Myke Tomson'),
+(6, 3, NULL, NULL, '2021-09-13', '700.00', '1340.00', '14660.00', '16000.00', '2021-09-13', 'Myke Tomson');
 
 -- --------------------------------------------------------
 
@@ -87,15 +97,22 @@ CREATE TABLE `rentals_table` (
   `bank` text NOT NULL,
   `bank_account` text NOT NULL,
   `payment_date` date NOT NULL,
-  `createdat` date NOT NULL
+  `createdat` date NOT NULL,
+  `createdby` text DEFAULT NULL,
+  `deletedat` date DEFAULT NULL,
+  `deletedby` text DEFAULT NULL,
+  `updatedat` date DEFAULT NULL,
+  `updatedby` text DEFAULT NULL,
+  `status` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `rentals_table`
 --
 
-INSERT INTO `rentals_table` (`rental_id`, `client_id`, `vehicle_id`, `start_date`, `end_date`, `rate`, `bank`, `bank_account`, `payment_date`, `createdat`) VALUES
-(1, 2, 1, '2021-09-06', '2021-09-10', '3.00', 'Access Bank', '0093984849390394', '2021-09-06', '2021-09-06');
+INSERT INTO `rentals_table` (`rental_id`, `client_id`, `vehicle_id`, `start_date`, `end_date`, `rate`, `bank`, `bank_account`, `payment_date`, `createdat`, `createdby`, `deletedat`, `deletedby`, `updatedat`, `updatedby`, `status`) VALUES
+(1, 2, 1, '2021-09-06', '2021-09-10', '3.00', 'Access Bank', '0093984849390394', '2021-09-06', '2021-09-06', NULL, NULL, NULL, NULL, NULL, 0),
+(3, 3, 2, '2021-09-08', '2021-09-15', '2.00', 'GCB', '00128383832923', '2021-09-13', '2021-09-13', 'Myke Tomson', NULL, NULL, NULL, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -159,8 +176,8 @@ CREATE TABLE `vehicles` (
 --
 
 INSERT INTO `vehicles` (`vehicle_id`, `vehicle_type`, `vehicle_brand`, `vehicle_reg_no`, `vehicle_price`, `vehicle_color`, `vehicle_location`, `vehicle_insurance_date`, `createdat`, `createdby`, `updatedby`, `updatedat`, `deletedby`, `deletedat`, `photo`, `status`) VALUES
-(1, 'Corolla S II', 'Toyota', '81093480329329432', '250000', 'dark grey', 'Tema New Town', '2021-09-09', '2021-09-06', '', 'Myke Tomson', '2021-09-10', '', '0000-00-00', 'car.png', 0),
-(2, 'Corolla', 'Nissan', '093802382342309', '16000', 'Dark Grey', 'New York', '2021-09-24', '2021-09-10', 'Myke Tomson', NULL, NULL, NULL, NULL, 'car.png', 0);
+(1, 'Corolla S II', 'Toyota', '81093480329329432', '250000', 'dark grey', 'Tema New Town', '2021-09-09', '2021-09-06', '', 'Myke Tomson', '2021-09-10', '', '0000-00-00', 'car.png', 1),
+(2, 'Corolla', 'Nissan', '093802382342309', '16000', 'Dark Grey', 'New York', '2021-09-24', '2021-09-10', 'Myke Tomson', NULL, NULL, NULL, NULL, 'car.png', 1);
 
 --
 -- Indexes for dumped tables
@@ -210,13 +227,13 @@ ALTER TABLE `clients_table`
 -- AUTO_INCREMENT for table `payment_table`
 --
 ALTER TABLE `payment_table`
-  MODIFY `payment_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `payment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `rentals_table`
 --
 ALTER TABLE `rentals_table`
-  MODIFY `rental_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `rental_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users_table`
