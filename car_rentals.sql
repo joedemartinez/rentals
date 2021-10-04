@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Sep 13, 2021 at 04:49 AM
+-- Generation Time: Oct 04, 2021 at 06:52 AM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.8
 
@@ -35,6 +35,7 @@ CREATE TABLE `clients_table` (
   `email` text NOT NULL,
   `identification_type` text NOT NULL,
   `identification_number` text NOT NULL,
+  `deactivation_reason` text DEFAULT NULL,
   `createdat` date NOT NULL,
   `createdby` text NOT NULL,
   `photo` text NOT NULL DEFAULT 'user.png',
@@ -49,9 +50,8 @@ CREATE TABLE `clients_table` (
 -- Dumping data for table `clients_table`
 --
 
-INSERT INTO `clients_table` (`client_id`, `fullname`, `address`, `contact`, `email`, `identification_type`, `identification_number`, `createdat`, `createdby`, `photo`, `status`, `updatedby`, `updatedat`, `deletedby`, `deletedat`) VALUES
-(2, 'Tom Syd', 'Ghana gh', '0938239408', 'tom@gmail.co', 'Ghana Card', '092903892302', '2021-09-09', 'Myke Tomson', 'user.png', 1, 'Myke Tomson', '2021-09-09', '', '0000-00-00'),
-(3, 'Davis lvan', 'Ghana gh', '0938239408', 'tom@gmail.co', 'Ghana Card', '092903892302', '2021-09-09', 'Myke Tomson', 'user.png', 0, 'Myke Tomson', '2021-09-09', 'Myke Tomson', '2021-09-09');
+INSERT INTO `clients_table` (`client_id`, `fullname`, `address`, `contact`, `email`, `identification_type`, `identification_number`, `deactivation_reason`, `createdat`, `createdby`, `photo`, `status`, `updatedby`, `updatedat`, `deletedby`, `deletedat`) VALUES
+(4, 'Jack  Elorm', 'Comm 43', '0293838292', 'Jack@gami.com', 'Ghana Card', 'jakdjfklsdfjl', 'rest', '2021-10-04', 'Myke Tomson', 'user.png', 0, NULL, NULL, 'Myke Tomson', '2021-10-04');
 
 -- --------------------------------------------------------
 
@@ -111,8 +111,8 @@ CREATE TABLE `rentals_table` (
 --
 
 INSERT INTO `rentals_table` (`rental_id`, `client_id`, `vehicle_id`, `start_date`, `end_date`, `rate`, `bank`, `bank_account`, `payment_date`, `createdat`, `createdby`, `deletedat`, `deletedby`, `updatedat`, `updatedby`, `status`) VALUES
-(1, 2, 1, '2021-09-06', '2021-09-10', '3.00', 'Access Bank', '0093984849390394', '2021-09-06', '2021-09-06', NULL, NULL, NULL, NULL, NULL, 0),
-(3, 3, 2, '2021-09-08', '2021-09-15', '2.00', 'GCB', '00128383832923', '2021-09-13', '2021-09-13', 'Myke Tomson', NULL, NULL, NULL, NULL, 0);
+(1, 4, 1, '2021-09-06', '2021-09-10', '3.00', 'Access Bank', '0093984849390394', '2021-09-06', '2021-09-06', NULL, NULL, NULL, NULL, NULL, 0),
+(3, 4, 2, '2021-09-08', '2021-09-15', '2.00', 'GCB', '00128383832923', '2021-09-13', '2021-09-13', 'Myke Tomson', NULL, NULL, NULL, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -128,6 +128,7 @@ CREATE TABLE `users_table` (
   `dob` date NOT NULL,
   `address` text NOT NULL,
   `phoneno` text NOT NULL,
+  `deactivation_reason` text DEFAULT NULL,
   `createdat` date NOT NULL,
   `createdby` text NOT NULL,
   `status` int(11) NOT NULL DEFAULT 0,
@@ -142,9 +143,9 @@ CREATE TABLE `users_table` (
 -- Dumping data for table `users_table`
 --
 
-INSERT INTO `users_table` (`user_id`, `username`, `password`, `fullname`, `dob`, `address`, `phoneno`, `createdat`, `createdby`, `status`, `photo`, `updatedby`, `updatedat`, `deletedby`, `deletedat`) VALUES
-(1, 'H2021423', '$2y$10$j1Lfi95lE30yEFXJf2yTz.lt2f9Lw/ssRKKD8xENRDyGJEzP50CHq', 'Myke Tomson', '1992-09-14', '', '0243232323', '2021-09-06', '', 0, 'profile.jpg', '', '0000-00-00', '', '0000-00-00'),
-(2, 'Emp65294', '$2y$10$SQesIJ4yCsTCjhgsF1ic8eJDGu5kBVjxurBZ/mlqeZ4Vu.yz5jOEG', 'Tom West', '1986-01-06', 'Salaga1', '03390389033', '2021-09-10', 'Myke Tomson', 0, 'profile.jpg', 'Myke Tomson', '2021-09-10', '', '0000-00-00');
+INSERT INTO `users_table` (`user_id`, `username`, `password`, `fullname`, `dob`, `address`, `phoneno`, `deactivation_reason`, `createdat`, `createdby`, `status`, `photo`, `updatedby`, `updatedat`, `deletedby`, `deletedat`) VALUES
+(1, 'H2021423', '$2y$10$j1Lfi95lE30yEFXJf2yTz.lt2f9Lw/ssRKKD8xENRDyGJEzP50CHq', 'Myke Tomson', '1992-09-14', '', '0243232323', NULL, '2021-09-06', '', 0, 'profile.jpg', '', '0000-00-00', '', '0000-00-00'),
+(2, 'Emp65294', '$2y$10$SQesIJ4yCsTCjhgsF1ic8eJDGu5kBVjxurBZ/mlqeZ4Vu.yz5jOEG', 'Tom West', '1986-01-06', 'Salaga1', '03390389033', ';jkl;', '2021-09-10', 'Myke Tomson', 0, 'profile.jpg', 'Myke Tomson', '2021-09-10', '', '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -221,7 +222,7 @@ ALTER TABLE `vehicles`
 -- AUTO_INCREMENT for table `clients_table`
 --
 ALTER TABLE `clients_table`
-  MODIFY `client_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `client_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `payment_table`
