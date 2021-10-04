@@ -54,6 +54,7 @@
                   <th>Fullname</th>
                   <th>DoB</th>
                   <th>Contact</th>
+                  <th>Reason</th>
                   <th>Action</th>
                 </thead>
                 <tbody>
@@ -72,6 +73,7 @@
                           <td>".$row['fullname']."</td>
                           <td>".$row['dob']."</td>
                           <td>".$row['phoneno']."</td>
+                          <td>".$row['deactivation_reason']."</td>
                           <td><button class='btn btn-warning btn-sm btn-flat activate' data-id='".$row['user_id']."'><i class='fa fa-toggle-on'></i> Activate</button> 
                             <button title='Delete' class='btn btn-danger btn-sm btn-flat delete' data-id='".$row['user_id']."'><i class='fa fa-trash'></i> Delete</button>
                           </td>

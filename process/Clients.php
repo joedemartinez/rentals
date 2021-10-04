@@ -52,7 +52,10 @@
 
 		//for deactivate
 		if($_POST['name'] === 'deactivate'){
-			$sql = "UPDATE clients_table SET status = 1 WHERE client_id = '$id'";
+
+			$reason = $_POST['reason'];
+
+			$sql = "UPDATE clients_table SET status = 1, deactivation_reason =  '$reason' WHERE client_id = '$id'";
 			if($conn->query($sql)){
 				$_SESSION['success'] = 'Deactivation successfully';
 			}

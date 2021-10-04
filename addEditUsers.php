@@ -79,12 +79,16 @@
                           <td>".$row['address']."</td>
                           <td>".$row['phoneno']."</td>
                           <td>".$row['createdat']."</td>
-                          <td><button class='btn btn-warning btn-sm btn-flat edit' data-id='".$row['user_id']."'><i class='fa fa-edit'></i> Edit</button>
+                          <td><button class='btn btn-warning btn-sm btn-flat edit' data-id='".$row['user_id']."'><i class='fa fa-edit'></i> Edit</button>";
+
+                        if ($row['user_id'] !== $user['user_id']){
+                          echo "
                             <button class='btn btn-secondary btn-sm btn-flat deactivate' data-id='".$row['user_id']."'><i class='fa fa-toggle-off'></i> Deactivate</button>
                             <button title='Delete' class='btn btn-danger btn-sm btn-flat delete' data-id='".$row['user_id']."'><i class='fa fa-trash'></i> Delete</button>
                           </td>
                         </tr>
                       ";
+                    }
                       $i++;
                     }
                   ?>
@@ -112,14 +116,23 @@
     getRow(id, name);
   });
 
+
+
   $(document).on("click", ".deactivate", function(e){
     e.preventDefault();
-    if (confirm('Do you want to deactivate this user?')){
-      let id = $(this).data('id');
-      let name = "deactivate";
-      getRow(id, name);
-    }
+    $('#deactivation').modal('show');
+    let id = $(this).data('id');
+    $('#deID').val(id);
   });
+  $(document).on("click", ".deactivation", function(e){
+    e.preventDefault();
+    let id = $('#deID').val();
+    let name = "deactivate";
+    let reason = $('#reason').val();
+    getDeactivate(id, name, reason);
+  });
+
+
 
   $(document).on("click", ".delete", function(e){
     e.preventDefault();
@@ -140,9 +153,6 @@ function getRow(id, name){
       if("delete" in response){
         location.reload();
       }
-      else if("deactivate" in response){
-        location.reload();
-      }
       else{
         $('#user').val(response.user_id)
         $('#fullname').val(response.fullname);
@@ -151,6 +161,20 @@ function getRow(id, name){
         $('#dob').val(response.dob);
         $('#username').val(response.username);
       }
+    }
+  });
+}
+
+function getDeactivate(id, name, reason){
+  $.ajax({
+    type: 'POST',
+    url: 'process/Users.php',
+    data: {id:id, name:name, reason: reason},
+    dataType: 'json',
+    success: function(response){
+       // if("deactivate" in response){
+        location.reload();
+      // }
     }
   });
 }

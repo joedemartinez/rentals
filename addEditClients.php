@@ -99,6 +99,7 @@
 <?php include 'modals/clientsModal.php'; ?>
 
 <script>
+  //edit
   $(document).on("click", ".edit", function(e){
     e.preventDefault();
     $('#edit').modal('show');
@@ -107,15 +108,25 @@
     getRow(id, name);
   });
 
+
+//deactivate
   $(document).on("click", ".deactivate", function(e){
     e.preventDefault();
-    if (confirm('Do you want to deactivate this client?')){
-      let id = $(this).data('id');
-      let name = "deactivate";
-      getRow(id, name);
-    }
+    $('#deactivation').modal('show');
+    let id = $(this).data('id');
+    $('#deID').val(id);
+    
+  });
+  $(document).on("click", ".deactivation", function(e){
+    e.preventDefault();
+    let id = $('#deID').val();
+    let name = "deactivate";
+    let reason = $('#reason').val();
+    getDeactivate(id, name, reason);
   });
 
+
+//delete
   $(document).on("click", ".delete", function(e){
     e.preventDefault();
     if (confirm('Do you want to delete this client?')){
@@ -135,9 +146,6 @@ function getRow(id, name){
       if("delete" in response){
         location.reload();
       }
-      else if("deactivate" in response){
-        location.reload();
-      }
       else{
         $('#client').val(response.client_id)
         $('#fullname').val(response.fullname);
@@ -147,6 +155,20 @@ function getRow(id, name){
         $('#id_type').val(response.identification_type);
         $('#id_number').val(response.identification_number);
       }
+    }
+  });
+}
+
+function getDeactivate(id, name, reason){
+  $.ajax({
+    type: 'POST',
+    url: 'process/Clients.php',
+    data: {id:id, name:name, reason: reason},
+    dataType: 'json',
+    success: function(response){
+       // if("deactivate" in response){
+        location.reload();
+      // }
     }
   });
 }

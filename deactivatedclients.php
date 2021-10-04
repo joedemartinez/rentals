@@ -54,6 +54,7 @@
                   <th>Address</th>
                   <th>Contact</th>
                   <th>ID No.</th>
+                  <th>Reason</th>
                   <th>Action</th>
                 </thead>
                 <tbody>
@@ -71,6 +72,7 @@
                           <td>".$row['address']."</td>
                           <td>".$row['contact']."</td>
                           <td>".$row['identification_type']." : ".$row['identification_number']."</td>
+                          <td>".$row['deactivation_reason']."</td>
                           <td><button class='btn btn-warning btn-sm btn-flat activate' data-id='".$row['client_id']."'><i class='fa fa-toggle-on'></i> Activate</button>
                             <button title='Delete' class='btn btn-danger btn-sm btn-flat delete' data-id='".$row['client_id']."'><i class='fa fa-trash'></i> Delete</button>
                           </td>
