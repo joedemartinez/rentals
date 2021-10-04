@@ -16,7 +16,9 @@
 		}
 		//for delete
 		if($_POST['name'] === 'delete'){
-			$sql = "DELETE FROM clients_table WHERE client_id = '$id'";
+			//deactivate == 1 and delete == 2
+			// $sql = "DELETE FROM clients_table WHERE client_id = '$id'";
+			$sql = "UPDATE clients_table SET status = 2 WHERE client_id = '$id'";
 			if($conn->query($sql)){
 				//update details
 				$deletedby = $user['fullname'];

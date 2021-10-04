@@ -114,18 +114,20 @@
 
   $(document).on("click", ".deactivate", function(e){
     e.preventDefault();
-    confirm('Do you want to deactivate this user?');
-    let id = $(this).data('id');
-    let name = "deactivate";
-    getRow(id, name);
+    if (confirm('Do you want to deactivate this user?')){
+      let id = $(this).data('id');
+      let name = "deactivate";
+      getRow(id, name);
+    }
   });
 
   $(document).on("click", ".delete", function(e){
     e.preventDefault();
-    confirm('Do you want to delete this user?');
-    let id = $(this).data('id');
-    let name = "delete";
-    getRow(id, name);
+    if (confirm('Do you want to delete this user?')){
+      let id = $(this).data('id');
+      let name = "delete";
+      getRow(id, name);
+    }
   });
 
 function getRow(id, name){

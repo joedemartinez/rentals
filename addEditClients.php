@@ -76,7 +76,7 @@
                           <td>".$row['identification_type']." : ".$row['identification_number']."</td>
                           <td><button class='btn btn-warning btn-sm btn-flat edit' data-id='".$row['client_id']."'><i class='fa fa-edit'></i> Edit</button>
                           <button class='btn btn-secondary btn-sm btn-flat deactivate' data-id='".$row['client_id']."'><i class='fa fa-toggle-off'></i> Deactivate</button>
-                            <button title='Delete' class='btn btn-danger btn-sm btn-flat delete' data-id='".$row['client_id']."' <i class='fa fa-trash'></i> Delete</button>
+                            <button title='Delete' class='btn btn-danger btn-sm btn-flat delete' data-id='".$row['client_id']."'  <i class='fa fa-trash'></i> Delete</button>
                           </td>
                         </tr>
                       ";
@@ -109,18 +109,20 @@
 
   $(document).on("click", ".deactivate", function(e){
     e.preventDefault();
-    confirm('Do you want to deactivate this client?');
-    let id = $(this).data('id');
-    let name = "deactivate";
-    getRow(id, name);
+    if (confirm('Do you want to deactivate this client?')){
+      let id = $(this).data('id');
+      let name = "deactivate";
+      getRow(id, name);
+    }
   });
 
   $(document).on("click", ".delete", function(e){
     e.preventDefault();
-    confirm('Do you want to delete this client?');
-    let id = $(this).data('id');
-    let name = "delete";
-    getRow(id, name);
+    if (confirm('Do you want to delete this client?')){
+      let id = $(this).data('id');
+      let name = "delete";
+      getRow(id, name);
+    }
   });
 
 function getRow(id, name){

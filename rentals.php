@@ -51,6 +51,10 @@
                   <th>#</th>
                   <th>Name of Client</th>
                   <th>Vehicle</th>
+                  <th>Veh Reg No</th>
+                  <th>Price</th>
+                  <th>Color</th>
+                  <th>Location</th>
                   <th>Start Date</th>
                   <th>End Date</th>
                   <th>Rate</th>
@@ -75,6 +79,10 @@
                           <td>". $i."</td>
                           <td>".$row1[1]."</td>
                           <td>".$row2[1]." - ".$row2[2]."</td>
+                          <td>".$row2[3]."</td>
+                          <td>".$row2[4]."</td>
+                          <td>".$row2[5]."</td>
+                          <td>".$row2[6]."</td>
                           <td>".$row['start_date']."</td>
                           <td>".$row['end_date']." </td>
                           <td>".$row['rate']."</td>

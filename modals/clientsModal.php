@@ -43,7 +43,7 @@
                     <div class="col-sm-9">
                       <select class="form-control" name="id_type">
                         <option selected="" value="">Select ID</option>
-                        <option value="Ghana Card">Ghana Card</option>
+                        <option value="Ghana Card">Driver's License / Ghana Card</option>
                         <option value="Voter's Card">Voter's Card</option>
                         <option value="NHIS Card">NHIS Card</option>
                       </select>

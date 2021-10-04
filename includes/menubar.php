@@ -71,19 +71,6 @@
             <li><a href="deactivatedusers.php"><i class="fa fa-toggle-off"></i>Deactivated Users</a></li>
           </ul>
         </li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-map-marker"></i>
-            <span>Location</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="#"><i class="fa fa-circle-o"></i> Location list</a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i> Add/Edit </a></li>
-          </ul>
-        </li>
         <!-- <li class="header">REPORTS</li>
         <li><a href="#"><i class="fa fa-files-o"></i> <span>Reports</span></a></li> -->
         <li class="header">SIGN OUT</li>

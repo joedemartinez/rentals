@@ -60,7 +60,7 @@
                 </thead>
                 <tbody>
                   <?php
-                    $sql =  "SELECT * FROM vehicles ORDER BY vehicle_id DESC";
+                    $sql =  "SELECT * FROM vehicles WHERE status != 2 ORDER BY vehicle_id DESC";
                     $query = $conn->query($sql);
                    //id auto increament in tables initiation
                     $i = 1;

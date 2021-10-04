@@ -194,70 +194,31 @@ $(function(){
     });
 
 
-  //new and confirm password
-  //  $("#confirm_password").keyup(function( event ) {
-  //   if( $('#new_password').val() != $('#confirm_password').val() ) {
-  //     document.getElementById('passworderror').style.display='block';
-  //     document.getElementById('Updatebtn').setAttribute("disabled", "true");
-  //     document.getElementById('passwordsucess').style.display='none';
-  //     event.preventDefault();
-
-  //   }else if ($('#new_password').val() == "" && $('#confirm_password').val() == "") {
-  //     document.getElementById('Updatebtn').removeAttribute("disabled");
-  //     document.getElementById('passworderror').style.display='none';
-  //   }
-  //   else{
-  //     document.getElementById('passwordsucess').style.display='block';
-  //     document.getElementById('Updatebtn').removeAttribute("disabled");
-  //     document.getElementById('passworderror').style.display='none';
-  //     event.preventDefault();
-
-  //   }
-  // });
-
-//    //getting users fullname
-// $('#empid').keyup(function(){  
-//      var id = $('#empid').val();  
-//      if(id != '')  
-//      {  
-//       $.ajax({  
-//            url: 'process/employee_row.php', 
-//            method:"POST",  
-//            data:{id:id},  
-//            dataType: 'json',
-//            success:function(data){
-//             //if data is found in database
-//             if (data != null){
-//               $('#emp_name').val(data.emp_firstname+' '+data.emp_middlename+' '+data.emp_surname);  
-//             }else{//else display nothing
-//               $('#emp_name').val(''); 
-//             }
-//            }
-//       });  
-//      }  
-// }); 
-
-
-//   //checking staff id
-//   $('.useridcheck').keyup(function(){  
-//      var emp_id = $('.useridcheck').val();  
-//      if(emp_id != '')  
-//      {  
-//       $.ajax({  
-//            url: 'process/userIDcheck.php', 
-//            method:"POST",  
-//            data:{emp_id:emp_id},
-//            success:function(data){
-//             //if data is found in database
-//             if (data != null){
-//               $('.usermessage').html(data);  
-//             }else{//else display nothing
-//               $('.usermessage').html(data); 
-//             }
-//            }
-//       });  
-//      }  
-// });
+// printing
+  $(document).on("click", "#printThis", function(e){
+  $("#printing").printThis({
+      debug: false,                   // show the iframe for debugging
+      importCSS: false,                // import parent page css
+      importStyle: false,             // import style tags
+      printContainer: true,           // grab outer container as well as the contents of the selector
+      loadCSS: "rentals/assets/bower_components/bootstrap/dist/css/bootstrap.min.css",      // path to additional css file - use an array [] for multiple
+      pageTitle: "",               // add title to print page
+      removeInline: false,            // remove all inline styles from print elements
+      removeInlineSelector: "body *", // custom selectors to filter inline styles. removeInline must be true
+      printDelay: 333,                // variable print delay
+      header: "",                   // prefix to html
+      footer: null,                   // postfix to html
+      base: false,                    // preserve the BASE tag, or accept a string for the URL
+      formValues: true,               // preserve input/form values
+      canvas: false,                  // copy canvas elements
+      doctypeString: '...',           // enter a different doctype for older markup
+      removeScripts: false,           // remove script tags from print content
+      copyTagClasses: false,           // copy classes from the html & body tag
+      beforePrintEvent: null,         // callback function for printEvent in iframe
+      beforePrint: null,              // function called before iframe is filled
+    afterPrint: null                // function called before iframe is removed
+ });
+});
 
 
   </script>

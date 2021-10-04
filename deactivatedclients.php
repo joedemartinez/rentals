@@ -95,18 +95,20 @@
 <script>
   $(document).on("click", ".activate", function(e){
     e.preventDefault();
-    confirm('Do you want to activate this client?');
-    let id = $(this).data('id');
-    let name = "activate";
-    getRow(id, name);
+    if (confirm('Do you want to activate this client?')){
+      let id = $(this).data('id');
+      let name = "activate";
+      getRow(id, name);
+    }
   });
 
   $(document).on("click", ".delete", function(e){
     e.preventDefault();
-    confirm('Do you want to delete this client?');
-    let id = $(this).data('id');
-    let name = "delete";
-    getRow(id, name);
+    if (confirm('Do you want to delete this client?')){
+      let id = $(this).data('id');
+      let name = "delete";
+      getRow(id, name);
+    }
   });
 
 function getRow(id, name){

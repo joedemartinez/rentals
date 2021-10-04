@@ -64,7 +64,7 @@
                 </thead>
                 <tbody>
                   <?php
-                    $sql =  "SELECT * FROM vehicles ORDER BY vehicle_id DESC";
+                    $sql =  "SELECT * FROM vehicles WHERE status != 2 ORDER BY vehicle_id DESC";
                     $query = $conn->query($sql);
                    //id auto increament in tables initiation
                     $i = 1;
@@ -114,10 +114,11 @@
 
   $(document).on("click", ".delete", function(e){
     e.preventDefault();
-    confirm('Do you want to delete this vehicle?');
-    let id = $(this).data('id');
-    let name = "delete";
-    getRow(id, name);
+    if (confirm('Do you want to delete this vehicle?')){
+      let id = $(this).data('id');
+      let name = "delete";
+      getRow(id, name);
+    }
   });
 
 function getRow(id, name){

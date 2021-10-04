@@ -130,10 +130,11 @@
 
   $(document).on("click", ".delete", function(e){
     e.preventDefault();
-    confirm('Do you want to delete this rental?');
-    let id = $(this).data('id');
-    let name = "delete";
-    getRow(id, name);
+    if (confirm('Do you want to delete this rental?')){
+      let id = $(this).data('id');
+      let name = "delete";
+      getRow(id, name);
+    }
   });
 
 function getRow(id, name){

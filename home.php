@@ -48,12 +48,12 @@
       ?>
       <!-- Small boxes (Stat box) -->
       <div class="row">
-        <div class="col-lg-3 col-xs-6">
+        <div class="col-lg-4 col-xs-6">
           <!-- small box -->
           <div class="small-box bg-aqua">
             <div class="inner">
               <?php
-                $sql = "SELECT * FROM clients_table";
+                $sql = "SELECT * FROM clients_table WHERE status != 2";
                 $query = $conn->query($sql);
 
                 echo "<h3>".$query->num_rows."</h3>";
@@ -83,12 +83,12 @@
         </div>
         
         <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
+        <div class="col-lg-4 col-xs-6">
           <!-- small box -->
           <div class="small-box bg-yellow">
             <div class="inner">
               <?php
-                $sql = "SELECT * FROM vehicles";
+                $sql = "SELECT * FROM vehicles WHERE status != 2";
                 $query = $conn->query($sql);
 
                 echo "<h3>".$query->num_rows."</h3>";
@@ -116,12 +116,12 @@
         </div>
 
         <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
+        <div class="col-lg-4 col-xs-6">
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
               <?php
-                $sql = "SELECT * FROM users_table";
+                $sql = "SELECT * FROM users_table WHERE status != 2";
                 $query = $conn->query($sql);
 
                 echo "<h3>".$query->num_rows."</h3>";
@@ -150,29 +150,6 @@
           </div>
         </div>
         <!-- ./col -->
-
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-blue">
-            <div class="inner">
-              <!-- <?php
-                $sql = "SELECT * FROM emp_table WHERE exit_id = 0 AND status = 0";
-                $query = $conn->query($sql);
-
-                echo "<h3>".$query->num_rows."</h3>";
-              ?> -->
-              <h3>8</h3>
-              <p>Locations</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-map"></i>
-            </div>
-            <ul class="small-box-footer">
-              <li>.</li>
-              <li>.</li>
-            </ul>
-          </div>
-        </div>
 
 
       </div>

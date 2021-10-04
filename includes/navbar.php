@@ -38,7 +38,7 @@
               </li>
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="#profile" data-toggle="modal" class="btn btn-default btn-flat" title="Profile" id="admin_profile">Profile</a>
+                  <!-- <a href="#profile" data-toggle="modal" class="btn btn-default btn-flat" title="Profile" id="admin_profile">Profile</a> -->
                 </div>
                 <div class="pull-right">
                   <a href="logout.php" class="btn btn-default btn-flat">Sign out</a>

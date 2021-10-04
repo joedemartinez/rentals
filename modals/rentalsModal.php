@@ -155,7 +155,8 @@
               <h4 class="modal-title"><b>Payments</b></h4>
             </div>
             <div class="modal-body flag">
-              <table id="example1" class="table table-bordered">
+              <button type="button" id="printThis" class="dt-button buttons-print"><span>Print</span></button>
+              <table id="printing" class="table table-bordered">
                   <thead>
                     <th>#</th>
                     <th>Date</th>
