@@ -78,10 +78,18 @@
 		$email = $_POST['email'];
 		$id_type = $_POST['id_type'];
 		$id_number = $_POST['id_number'];
+
+		$bank1 = $_POST['bank1'];
+		$account_no1 = $_POST['account_no1'];
+		$bank2 = $_POST['bank2'];
+		$account_no2 = $_POST['account_no2'];
+		$bank3 = $_POST['bank3'];
+		$account_no3 = $_POST['account_no3'];
+
 		$createdby = $user['fullname'];
         $createdat = date('Y-m-d');
 
-		$sql = "INSERT INTO clients_table (fullname, address, contact, email, identification_type, identification_number, createdat, createdby) VALUES ('$fullname', '$address', '$contact', '$email', '$id_type', '$id_number', '$createdat', '$createdby')";
+		$sql = "INSERT INTO clients_table (fullname, address, contact, email, identification_type, identification_number, bank1, bank_number1, bank2, bank_number2, bank3, bank_number3, createdat, createdby) VALUES ('$fullname', '$address', '$contact', '$email', '$id_type', '$id_number', '$bank1','$account_no1','$bank2','$account_no2','$bank3','$account_no3', '$createdat', '$createdby')";
 		if($conn->query($sql)){
 			$_SESSION['success'] = 'New Client added successfully';
 		}
@@ -105,10 +113,18 @@
 		$email = $_POST['email'];
 		$id_type = $_POST['id_type'];
 		$id_number = $_POST['id_number'];
+
+		$bank1 = $_POST['bank1'];
+		$account_no1 = $_POST['account_no1'];
+		$bank2 = $_POST['bank2'];
+		$account_no2 = $_POST['account_no2'];
+		$bank3 = $_POST['bank3'];
+		$account_no3 = $_POST['account_no3'];
+
 		$updatedby = $user['fullname'];
         $updatedat = date('Y-m-d');
 
-		$sql = "UPDATE clients_table SET fullname = '$fullname', address = '$address', contact = '$contact', email = '$email', identification_type = '$id_type', identification_number = '$id_number', updatedat = '$updatedat', updatedby = '$updatedby' WHERE client_id = '$client_id'";
+		$sql = "UPDATE clients_table SET fullname = '$fullname', address = '$address', contact = '$contact', email = '$email', identification_type = '$id_type', identification_number = '$id_number', bank1 = '$bank1', bank_number1 = '$account_no1', bank2 = '$bank2', bank_number2 = '$account_no2', bank3 = '$bank3', bank_number3 = '$account_no3', updatedat = '$updatedat', updatedby = '$updatedby' WHERE client_id = '$client_id'";
 		if($conn->query($sql)){
 			$_SESSION['success'] = 'Client details updated successfully';
 		}

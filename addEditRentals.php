@@ -57,7 +57,6 @@
                   <th>Start Date</th>
                   <th>End Date</th>
                   <th>Rate</th>
-                  <th>Bank</th>
                   <th>Payments</th>
                   <th>Action</th>
                 </thead>
@@ -82,7 +81,6 @@
                           <td>".$row['start_date']."</td>
                           <td>".$row['end_date']." </td>
                           <td>".$row['rate']."</td>
-                          <td>".$row['bank']." - ".$row['bank_account']." </td>
                           <td>
                             <button title='Show Payment' class='btn btn-info btn-sm btn-flat spayment' data-id='".$row['rental_id']."'><i class='fa fa-eye'></i> Show Payment</button>
                             <button title='Add Payment' class='btn btn-secondary btn-sm btn-flat apayment' data-id='".$row['rental_id']."'><i class='fa fa-plus'></i> Add Payment</button>

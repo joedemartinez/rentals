@@ -53,10 +53,12 @@
                 <thead>
                   <th>#</th>
                   <th>Fullname</th>
-                  <!-- <th>Photo</th> -->
                   <th>Address</th>
                   <th>Contact</th>
                   <th>ID No.</th>
+                  <th>Bank 1</th>
+                  <th>Bank 2</th>
+                  <th>Bank 3</th>
                   <th>Action</th>
                 </thead>
                 <tbody>
@@ -74,6 +76,9 @@
                           <td>".$row['address']."</td>
                           <td>".$row['contact']."</td>
                           <td>".$row['identification_type']." : ".$row['identification_number']."</td>
+                          <td>".$row['bank1']." : ".$row['bank_number1']."</td>
+                          <td>".$row['bank2']." : ".$row['bank_number2']."</td>
+                          <td>".$row['bank3']." : ".$row['bank_number3']."</td>
                           <td><button class='btn btn-warning btn-sm btn-flat edit' data-id='".$row['client_id']."'><i class='fa fa-edit'></i> Edit</button>
                           <button class='btn btn-secondary btn-sm btn-flat deactivate' data-id='".$row['client_id']."'><i class='fa fa-toggle-off'></i> Deactivate</button>
                             <button title='Delete' class='btn btn-danger btn-sm btn-flat delete' data-id='".$row['client_id']."'  <i class='fa fa-trash'></i> Delete</button>
@@ -154,6 +159,12 @@ function getRow(id, name){
         $('#email').val(response.email);
         $('#id_type').val(response.identification_type);
         $('#id_number').val(response.identification_number);
+        $('#bank1').val(response.bank1);
+        $('#account_no1').val(response.bank_number1);
+        $('#bank2').val(response.bank2);
+        $('#account_no2').val(response.bank_number2);
+        $('#bank3').val(response.bank3);
+        $('#account_no3').val(response.bank_number3);
       }
     }
   });

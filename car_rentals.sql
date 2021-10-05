@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 04, 2021 at 06:52 AM
+-- Generation Time: Oct 06, 2021 at 12:24 AM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.8
 
@@ -35,6 +35,12 @@ CREATE TABLE `clients_table` (
   `email` text NOT NULL,
   `identification_type` text NOT NULL,
   `identification_number` text NOT NULL,
+  `bank1` text DEFAULT NULL,
+  `bank_number1` text DEFAULT NULL,
+  `bank2` text DEFAULT NULL,
+  `bank_number2` text DEFAULT NULL,
+  `bank3` text DEFAULT NULL,
+  `bank_number3` text DEFAULT NULL,
   `deactivation_reason` text DEFAULT NULL,
   `createdat` date NOT NULL,
   `createdby` text NOT NULL,
@@ -50,8 +56,8 @@ CREATE TABLE `clients_table` (
 -- Dumping data for table `clients_table`
 --
 
-INSERT INTO `clients_table` (`client_id`, `fullname`, `address`, `contact`, `email`, `identification_type`, `identification_number`, `deactivation_reason`, `createdat`, `createdby`, `photo`, `status`, `updatedby`, `updatedat`, `deletedby`, `deletedat`) VALUES
-(4, 'Jack  Elorm', 'Comm 43', '0293838292', 'Jack@gami.com', 'Ghana Card', 'jakdjfklsdfjl', 'rest', '2021-10-04', 'Myke Tomson', 'user.png', 0, NULL, NULL, 'Myke Tomson', '2021-10-04');
+INSERT INTO `clients_table` (`client_id`, `fullname`, `address`, `contact`, `email`, `identification_type`, `identification_number`, `bank1`, `bank_number1`, `bank2`, `bank_number2`, `bank3`, `bank_number3`, `deactivation_reason`, `createdat`, `createdby`, `photo`, `status`, `updatedby`, `updatedat`, `deletedby`, `deletedat`) VALUES
+(4, 'Jack  Elorm', 'Comm 43', '0293838292', 'Jack@gami.com', 'Ghana Card', 'GHA-9898988787', 'A', 'A12', '', '', '', '', 'rest', '2021-10-04', 'Myke Tomson', 'user.png', 0, 'Myke Tomson', '2021-10-05', 'Myke Tomson', '2021-10-04');
 
 -- --------------------------------------------------------
 
@@ -94,8 +100,8 @@ CREATE TABLE `rentals_table` (
   `start_date` date NOT NULL,
   `end_date` date NOT NULL,
   `rate` decimal(10,2) NOT NULL,
-  `bank` text NOT NULL,
-  `bank_account` text NOT NULL,
+  `bank` text DEFAULT NULL,
+  `bank_account` text DEFAULT NULL,
   `payment_date` date NOT NULL,
   `createdat` date NOT NULL,
   `createdby` text DEFAULT NULL,
@@ -112,7 +118,8 @@ CREATE TABLE `rentals_table` (
 
 INSERT INTO `rentals_table` (`rental_id`, `client_id`, `vehicle_id`, `start_date`, `end_date`, `rate`, `bank`, `bank_account`, `payment_date`, `createdat`, `createdby`, `deletedat`, `deletedby`, `updatedat`, `updatedby`, `status`) VALUES
 (1, 4, 1, '2021-09-06', '2021-09-10', '3.00', 'Access Bank', '0093984849390394', '2021-09-06', '2021-09-06', NULL, NULL, NULL, NULL, NULL, 0),
-(3, 4, 2, '2021-09-08', '2021-09-15', '2.00', 'GCB', '00128383832923', '2021-09-13', '2021-09-13', 'Myke Tomson', NULL, NULL, NULL, NULL, 0);
+(3, 4, 2, '2021-09-08', '2021-09-15', '2.00', 'GCB', '00128383832923', '2021-09-13', '2021-09-13', 'Myke Tomson', NULL, NULL, NULL, NULL, 0),
+(4, 4, 2, '2021-10-05', '2021-10-06', '7.00', NULL, NULL, '2021-10-05', '2021-10-05', 'Myke Tomson', NULL, NULL, NULL, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -234,7 +241,7 @@ ALTER TABLE `payment_table`
 -- AUTO_INCREMENT for table `rentals_table`
 --
 ALTER TABLE `rentals_table`
-  MODIFY `rental_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `rental_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `users_table`

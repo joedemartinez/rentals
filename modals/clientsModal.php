@@ -56,6 +56,34 @@
                       <input type="text" class="form-control" placeholder="ID Number" name="id_number">
                     </div>
                 </div>
+                <hr>
+                <div class="form-group">
+                    <label for="bank" class="col-sm-12 control-label">Bank Details</label>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-5">
+                      <input type="text" class="form-control" placeholder="Name of Bank "  name="bank1">
+                    </div>
+                    <div class="col-sm-6">
+                      <input type="text" class="form-control" placeholder="Acc No. e.g 0098..."  name="account_no1">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-5">
+                      <input type="text" class="form-control" placeholder="Name of Bank "  name="bank2">
+                    </div>
+                    <div class="col-sm-6">
+                      <input type="text" class="form-control" placeholder="Acc No. e.g 0098..."  name="account_no2">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-5">
+                      <input type="text" class="form-control" placeholder="Name of Bank "  name="bank3">
+                    </div>
+                    <div class="col-sm-6">
+                      <input type="text" class="form-control" placeholder="Acc No. e.g 0098..."  name="account_no3">
+                    </div>
+                </div>
             </div>
             <div class="modal-footer">
               <button type="submit" title="Add Client" class="btn btn-primary btn-flat" name="addClient"><i class="fa fa-save"></i> Add</button>
@@ -124,6 +152,34 @@
 
                     <div class="col-sm-9">
                       <input type="text" class="form-control" placeholder="ID Number" id="id_number" name="id_number">
+                    </div>
+                </div>
+                <hr>
+                <div class="form-group">
+                    <label for="bank" class="col-sm-12 control-label">Bank Details</label>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-5">
+                      <input type="text" class="form-control" placeholder="Name of Bank "  id="bank1" name="bank1">
+                    </div>
+                    <div class="col-sm-6">
+                      <input type="text" class="form-control" placeholder="Acc No. e.g 0098..." id="account_no1" name="account_no1">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-5">
+                      <input type="text" class="form-control" placeholder="Name of Bank " id="bank2" name="bank2">
+                    </div>
+                    <div class="col-sm-6">
+                      <input type="text" class="form-control" placeholder="Acc No. e.g 0098..." id="account_no2" name="account_no2">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-5">
+                      <input type="text" class="form-control" placeholder="Name of Bank " id="bank3"  name="bank3">
+                    </div>
+                    <div class="col-sm-6">
+                      <input type="text" class="form-control" placeholder="Acc No. e.g 0098..." id="account_no3" name="account_no3">
                     </div>
                 </div>
             </div>

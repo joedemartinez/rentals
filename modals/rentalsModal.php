@@ -66,37 +66,7 @@
                     <div class="col-sm-9">
                       <input type="number" class="form-control" placeholder="Rate" min="0" name="rate" required>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="bank" class="col-sm-2 control-label">Bank</label>
-
-                    <div class="col-sm-9">
-                      <input type="text" class="form-control" placeholder="Name of Bank"  name="bank" required>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="bank" class="col-sm-2 control-label">Bank Acc No.</label>
-
-                    <div class="col-sm-9">
-                      <input type="text" class="form-control" placeholder="e.g 0098..."  name="account_no">
-                    </div>
-                </div>
-                <!-- <hr> -->
-                <!-- <label><u>Payment</u></label> -->
-                <!-- <div class="form-group">
-                    <label for="bank" class="col-sm-2 control-label">Opening Bal</label>
-
-                    <div class="col-sm-9">
-                      <input type="number" class="form-control"min="0" placeholder="e.g 2398..."  name="">
-                    </div>
-                </div> -->
-               <!--  <div class="form-group">
-                    <label for="bank" class="col-sm-2 control-label">First Payment</label>
-
-                    <div class="col-sm-9">
-                      <input type="number" class="form-control"min="0" placeholder="e.g 2398..."  name="">
-                    </div>
-                </div> -->
+                </div> 
             </div>
             <div class="modal-footer">
               <button type="submit" title="Add Rental" class="btn btn-primary btn-flat" name="addRental"><i class="fa fa-save"></i> Add</button>

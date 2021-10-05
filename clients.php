@@ -50,10 +50,12 @@
                 <thead>
                   <th>#</th>
                   <th>Fullname</th>
-                  <!-- <th>Photo</th> -->
                   <th>Address</th>
                   <th>Contact</th>
                   <th>ID No.</th>
+                  <th>Bank 1</th>
+                  <th>Bank 2</th>
+                  <th>Bank 3</th>
                 </thead>
                 <tbody>
                   <?php
@@ -70,6 +72,9 @@
                           <td>".$row['address']."</td>
                           <td>".$row['contact']."</td>
                           <td>".$row['identification_type']." : ".$row['identification_number']."</td>
+                          <td>".$row['bank1']." : ".$row['bank_number1']."</td>
+                          <td>".$row['bank2']." : ".$row['bank_number2']."</td>
+                          <td>".$row['bank3']." : ".$row['bank_number3']."</td>
                         </tr>
                       ";
                       $i++;

@@ -91,12 +91,12 @@
     $end_date = $_POST['end_date'];
     $payment_date = $_POST['payment_date'];
     $rate = $_POST['rate'];
-    $bank = $_POST['bank'];
-    $account_no = $_POST['account_no'];
+    // $bank = $_POST['bank'];
+    // $account_no = $_POST['account_no'];
     $createdby = $user['fullname'];
     $createdat = date('Y-m-d');
 
-    $sql = "INSERT INTO rentals_table (client_id, vehicle_id, start_date, end_date, payment_date, rate, bank, bank_account, createdby, createdat) VALUES ('$clientName', '$vehicle', '$start_date', '$end_date', '$payment_date', '$rate', '$bank', '$account_no','$createdby', '$createdat')";
+    $sql = "INSERT INTO rentals_table (client_id, vehicle_id, start_date, end_date, payment_date, rate, createdby, createdat) VALUES ('$clientName', '$vehicle', '$start_date', '$end_date', '$payment_date', '$rate','$createdby', '$createdat')";
      
       if($conn->query($sql)){
         $conn->query("UPDATE vehicles SET status = 1 WHERE vehicle_id = '$vehicle'");
